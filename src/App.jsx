@@ -25,6 +25,7 @@ class App extends Component {
       field,
       started: false,
       interval,
+      borderColor: '#FFF'
     }
   }
 
@@ -92,8 +93,13 @@ class App extends Component {
       }
     }
 
+    let nextBorderColor = '#'
+    const letters = '0123456789ABCDEF'
+    for (let i = 0; i < 6; i++) nextBorderColor += letters[Math.floor(Math.random() * 16)]
+
     this.setState({
-      field: nextField
+      field: nextField,
+      borderColor: nextBorderColor
     })
   }
 
@@ -151,6 +157,7 @@ class App extends Component {
         <Lifegame 
           field={this.state.field} 
           started={this.state.started} 
+          borderColor={this.state.borderColor} 
           handleCheck={this.handleCheck.bind(this)} 
           handleStart={this.handleStart.bind(this)} 
           handleStop={this.handleStop.bind(this)} 

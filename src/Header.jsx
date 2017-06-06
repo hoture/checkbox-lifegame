@@ -33,7 +33,6 @@ class Header extends Component {
         titleArray[i][8] = true
       }
       
-
       return (
         <div>
           {titleArray.map(row => {

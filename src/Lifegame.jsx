@@ -13,7 +13,7 @@ class Lifegame extends Component {
           handleAllClear={this.props.handleAllClear}
           started={this.props.started}
         />
-        <Table field={this.props.field} handleCheck={this.props.handleCheck} />
+        <Table field={this.props.field} handleCheck={this.props.handleCheck} borderColor={this.props.borderColor} />
       </div>
     )
   }

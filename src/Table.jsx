@@ -17,8 +17,13 @@ class Table extends Component {
   }
 
   render() {
+    const style = {
+      borderStyle: 'solid',
+      borderColor: this.props.borderColor,
+      display: 'inline-block'
+    }
     return (
-      <div>
+      <div style={style}>
         {this.props.field.map((row, irow) => this.renderRow(row, irow))}      
       </div>
     )
