@@ -10,6 +10,7 @@ class Lifegame extends Component {
           handleStart={this.props.handleStart} 
           handleStop={this.props.handleStop} 
           handleRandom={this.props.handleRandom}
+          handleAllClear={this.props.handleAllClear}
           started={this.props.started}
         />
         <Table field={this.props.field} handleCheck={this.props.handleCheck} />

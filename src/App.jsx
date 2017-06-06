@@ -81,10 +81,8 @@ class App extends Component {
           for (let icol_ of [ileft, icol, iright]) {
             if (irow_ === irow && icol_ === icol) continue
             numNeighbors += (field[irow_][icol_].checked) ? 1 : 0
-            if (irow === 2 && icol === 2) console.log(irow_, icol_, field[irow_][icol_])
           }
         }
-        if (irow === 2 && icol === 2) console.log(numNeighbors)
 
         if (field[irow][icol].checked) {
           if (numNeighbors <= 1 || numNeighbors >= 4) nextField[irow][icol].checked = false
@@ -130,6 +128,21 @@ class App extends Component {
     })
   }
 
+  handleAllClear() {
+    const { size } = this.state
+    let nextField = this.copyField()
+
+    for (let irow = 0; irow < size; irow++) {
+      for (let icol = 0; icol < size; icol++) {
+        nextField[irow][icol].checked = false
+      }
+    }
+
+    this.setState({
+      field: nextField
+    })
+  }
+
   render() {
 
     return (
@@ -142,6 +155,7 @@ class App extends Component {
           handleStart={this.handleStart.bind(this)} 
           handleStop={this.handleStop.bind(this)} 
           handleRandom={this.handleRandom.bind(this)} 
+          handleAllClear={this.handleAllClear.bind(this)} 
         />
       </div>
     )
