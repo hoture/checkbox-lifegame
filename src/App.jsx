@@ -33,7 +33,12 @@ class App extends Component {
 
     let copiedField = new Array(size)
     for (let ir = 0; ir < size; ir++) {
-      copiedField[ir] = field[ir].slice()
+      copiedField[ir] = new Array(size)
+      for (let ic = 0; ic < size; ic++) {
+        copiedField[ir][ic] = {
+          ...field[ir][ic]
+        }
+      }
     }
 
     return copiedField
@@ -75,9 +80,11 @@ class App extends Component {
         for (let irow_ of [iup, irow, idown]) {
           for (let icol_ of [ileft, icol, iright]) {
             if (irow_ === irow && icol_ === icol) continue
-            numNeighbors += field[irow_][icol_].checked
+            numNeighbors += (field[irow_][icol_].checked) ? 1 : 0
+            if (irow === 2 && icol === 2) console.log(irow_, icol_, field[irow_][icol_])
           }
         }
+        if (irow === 2 && icol === 2) console.log(numNeighbors)
 
         if (field[irow][icol].checked) {
           if (numNeighbors <= 1 || numNeighbors >= 4) nextField[irow][icol].checked = false
