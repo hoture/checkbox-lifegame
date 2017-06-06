@@ -7,11 +7,14 @@ class Lifegame extends Component {
     return (
       <div>
         <Buttons 
+          size={this.props.size}
+          started={this.props.started}
           handleStart={this.props.handleStart} 
           handleStop={this.props.handleStop} 
           handleRandom={this.props.handleRandom}
           handleAllClear={this.props.handleAllClear}
-          started={this.props.started}
+          handleLarger={this.props.handleLarger}
+          handleSmaller={this.props.handleSmaller}
         />
         <Table field={this.props.field} handleCheck={this.props.handleCheck} borderColor={this.props.borderColor} />
       </div>

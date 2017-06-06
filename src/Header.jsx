@@ -46,8 +46,13 @@ class Header extends Component {
       )
     }
 
+    const style = {
+      borderBottom: 'solid 1px #ddd',
+      paddingBottom: 8,
+      marginBottom: 8,
+    }
     return (
-      <div>
+      <div style={style}>
         {renderTitle()}
       </div>
     )

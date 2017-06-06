@@ -1,13 +1,25 @@
 import React, { Component } from 'react';
 import Lifegame from './Lifegame'
 import Header from './Header'
+import { initialSize, initialBorderColor, interval } from './constants'
 
 class App extends Component {
   constructor(props) {
     super(props)
 
-    const size = 12
-    const interval = 1000
+    const sizeLimit = [3, 20]
+    let field = this.initField(initialSize)
+
+    this.state = {
+      size: initialSize,
+      field,
+      started: false,
+      interval,
+      borderColor: initialBorderColor
+    }
+  }
+
+  initField(size) {
     let field = new Array(size)
     for (let irow = 0; irow < size; irow++) {
       field[irow] = new Array(size)
@@ -20,13 +32,7 @@ class App extends Component {
       }
     }
 
-    this.state = {
-      size,
-      field,
-      started: false,
-      interval,
-      borderColor: '#FFF'
-    }
+    return field
   }
 
   copyField() {
@@ -43,6 +49,22 @@ class App extends Component {
     }
 
     return copiedField
+  }
+
+  handleLarger() {
+    const nextSize = this.state.size + 1
+    this.setState({
+      size: nextSize,
+      field: this.initField(nextSize)
+    })
+  }
+
+  handleSmaller() {
+    const nextSize = this.state.size - 1
+    this.setState({
+      size: nextSize,
+      field: this.initField(nextSize)
+    })
   }
 
   handleCheck(irow, icol) {
@@ -155,6 +177,7 @@ class App extends Component {
       <div>
         <Header />
         <Lifegame 
+          size={this.state.size} 
           field={this.state.field} 
           started={this.state.started} 
           borderColor={this.state.borderColor} 
@@ -163,6 +186,8 @@ class App extends Component {
           handleStop={this.handleStop.bind(this)} 
           handleRandom={this.handleRandom.bind(this)} 
           handleAllClear={this.handleAllClear.bind(this)} 
+          handleLarger={this.handleLarger.bind(this)} 
+          handleSmaller={this.handleSmaller.bind(this)} 
         />
       </div>
     )
