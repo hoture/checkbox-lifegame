@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import Lifegame from './Lifegame'
+import Header from './Header'
 
 class App extends Component {
   constructor(props) {
     super(props)
 
-    const size = 4
+    const size = 12
     const interval = 1000
     let field = new Array(size)
     for (let irow = 0; irow < size; irow++) {
@@ -101,18 +102,39 @@ class App extends Component {
   }
 
   handleStop() {
+    this.setState({
+      started: false
+    })
     clearInterval(this.timer)
+  }
+
+  handleRandom() {
+    const { size } = this.state
+    let nextField = this.copyField()
+
+    for (let irow = 0; irow < size; irow++) {
+      for (let icol = 0; icol < size; icol++) {
+        nextField[irow][icol].checked = (Math.random() > 0.7) ? true : false
+      }
+    }
+
+    this.setState({
+      field: nextField
+    })
   }
 
   render() {
 
     return (
       <div>
+        <Header />
         <Lifegame 
           field={this.state.field} 
+          started={this.state.started} 
           handleCheck={this.handleCheck.bind(this)} 
           handleStart={this.handleStart.bind(this)} 
           handleStop={this.handleStop.bind(this)} 
+          handleRandom={this.handleRandom.bind(this)} 
         />
       </div>
     )
