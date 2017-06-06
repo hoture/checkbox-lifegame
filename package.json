@@ -1,6 +1,7 @@
 {
   "name": "lifegame",
   "version": "0.1.0",
+  "homepage": "https://hoture.github.io/checkbox-lifegame",
   "private": true,
   "dependencies": {
     "react": "^15.5.4",
