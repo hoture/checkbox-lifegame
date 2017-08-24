@@ -7,7 +7,6 @@ class App extends Component {
   constructor(props) {
     super(props)
 
-    const sizeLimit = [3, 20]
     let field = this.initField(initialSize)
 
     this.state = {
